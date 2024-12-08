@@ -187,6 +187,8 @@ void runAtSpeed ( void ) {
   }
 }
 
+
+
 /*This function, runToStop(), will run the robot until the target is achieved and
    then stop it
 */
@@ -405,11 +407,24 @@ void turn(int direction) {
   INSERT DESCRIPTION HERE, what are the inputs, what does it do, functions used
 */
 void forward(int distance) {
+ 
+  stepperLeft.move(distance);//move left wheel to relative position
+  stepperRight.move(distance);//move right wheel to relative position
+
+  stepperLeft.setSpeed(1000);//set left motor speed
+  stepperRight.setSpeed(1000);//set right motor spee
+  steppers.runSpeedToPosition();
 }
 /*
   INSERT DESCRIPTION HERE, what are the inputs, what does it do, functions used
 */
 void reverse(int distance) {
+  stepperLeft.move(distance);//move left wheel to relative position
+  stepperRight.move(distance);//move right wheel to relative position
+
+  stepperLeft.setSpeed(-1000);//set left motor speed
+  stepperRight.setSpeed(-1000);//set right motor spee
+  steppers.runSpeedToPosition();
 }
 /*
   INSERT DESCRIPTION HERE, what are the inputs, what does it do, functions used
@@ -454,10 +469,11 @@ void loop()
   //uncomment each function one at a time to see what the code does
   // move1();//call move back and forth function
   // move2();//call move back and forth function with AccelStepper library functions
-  move3();//call move back and forth function with MultiStepper library functions
+  // move3();//call move back and forth function with MultiStepper library functions
   // move4(); //move to target position with 2 different speeds - absolute position
   // move5(); //move continuously with 2 different speeds
   // move6(); //move to target position with 2 different speeds - relative position
+  forward(1827);
 
   //Uncomment to read Encoder Data (uncomment to read on serial monitor)
   // print_encoder_data();   //prints encoder data
